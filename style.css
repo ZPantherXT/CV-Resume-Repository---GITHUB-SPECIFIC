@@ -1,42 +1,27 @@
-const KEY = "AIzaSyDmmJ-zRqsCvY_mfESR8G5hcim7b5I9xrM"; 
-let m = "";
-
-async function start(mode) {
-    m = mode;
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('builder').style.display = 'grid';
-    // Specialist text: Weight 400 (Thinner)
-    document.getElementById('chat').innerHTML = `<div class="spec-msg"><b>Specialist:</b> Session initiated. State your Name and Job Role.</div>`;
+:root {
+    --light-orange: #FF8C00;
+    --dark-orange: #FF4D00;
 }
 
-function send() {
-    const i = document.getElementById('in');
-    if (i.value.trim()) {
-        document.getElementById('chat').innerHTML += `<div style="margin-bottom:15px; color:#ccc;"><b>User:</b> ${i.value}</div>`;
-        callAI(i.value);
-        i.value = '';
-    }
-}
+body { font-family: 'Inter', sans-serif; margin: 0; display: flex; height: 100vh; background: #fff; overflow: hidden; }
 
-async function callAI(userInput) {
-    try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents: [{ parts: [{ text: `Persona: Specialist. Task: Building a ${m}. User: "${userInput}". Return ONLY JSON: {"reply":"msg","name":"n","role":"r","summary":"s","experience":"<li>x</li>"}` }] }] })
-        });
-        
-        if (!response.ok) throw new Error();
-        
-        const data = await response.json();
-        const clean = JSON.parse(data.candidates[0].content.parts[0].text.replace(/```json|```/g, "").trim());
-        
-        document.getElementById('chat').innerHTML += `<div class="spec-msg"><b>Specialist:</b> ${clean.reply}</div>`;
-        if (clean.name) document.getElementById('n').innerText = clean.name;
-        
-    } catch (error) {
-        // Updated error text with Bold Red styling
-        document.getElementById('chat').innerHTML += `
-            <div class="error-msg">CRITICAL: Connection to Specialist server lost.</div>`;
-    }
-    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
-}
+/* Sidebar Layout */
+#builder { display: none; grid-template-columns: 350px 1fr; width: 100%; height: 100%; }
+
+.terminal { background: #111; color: #fff; padding: 40px 25px; display: flex; flex-direction: column; position: relative; }
+
+/* Thinner Specialist Weight */
+.spec-msg { color: var(--light-orange); font-weight: 400; margin-bottom: 25px; line-height: 1.5; }
+.spec-msg b { color: var(--dark-orange); font-weight: 700; }
+
+/* Bold Red Error */
+.error-msg { color: #ff0000 !important; font-weight: 900; margin-top: 10px; display: block; }
+
+/* Preview Styling */
+.preview { background: #555; display: flex; justify-content: center; align-items: center; overflow-y: auto; }
+.a4 { background: #fff; width: 210mm; height: 297mm; padding: 20mm; box-shadow: 0 0 20px rgba(0,0,0,0.3); }
+
+/* Input styling */
+.bottom-input { position: absolute; bottom: 30px; left: 20px; right: 20px; }
+input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 8px; margin-bottom: 10px; }
+button { width: 100%; padding: 12px; background: var(--dark-orange); color: #fff; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
