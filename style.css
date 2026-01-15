@@ -1,96 +1,20 @@
-:root {
-    --light-orange: #FF8C00;
-    --dark-orange: #FF4D00;
-    --terminal-bg: #121212;
+/* Specialist Message: Now Thinner */
+.spec-msg { 
+    color: var(--light-orange); 
+    margin-bottom: 25px; 
+    font-weight: 400; 
+    line-height: 1.4;
 }
 
-body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; overflow-x: hidden; }
-
-/* --- LANDING PAGE --- */
-#landing { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.main-heading { color: var(--dark-orange); font-size: 4.5rem; font-weight: 900; margin: 0; letter-spacing: -3px; text-transform: uppercase; }
-.subtitle { color: #555; font-size: 1.25rem; margin: 10px 0 60px 0; }
-.choice-row { display: flex; gap: 40px; }
-.card { border: 3px solid #eee; padding: 50px 30px; width: 440px; border-radius: 24px; cursor: pointer; transition: 0.3s; background: #fff; }
-.card h2 { color: var(--light-orange); font-size: 2.8rem; margin: 0 0 15px 0; font-weight: 800; }
-.desc { color: #666; font-size: 1rem; line-height: 1.5; margin-bottom: 25px; min-height: 3em; }
-.red-note { color: #ff0000; font-weight: 700; font-size: 0.95rem; text-transform: none; display: block; line-height: 1.4; }
-
-/* --- BUILDER: DARK TERMINAL SIDE --- */
-#builder { display: none; grid-template-columns: 400px 1fr; height: 100vh; }
-#term { background: var(--terminal-bg); padding: 40px 30px; display: flex; flex-direction: column; border-right: 1px solid #222; color: white; box-sizing: border-box; }
-
-/* FIXED: Orange Session Label */
-.session-label { 
+.spec-msg b { 
     color: var(--dark-orange); 
-    font-weight: 900; 
-    font-size: 0.8rem; 
-    letter-spacing: 2px; 
-    margin-bottom: 30px; 
-    text-transform: uppercase; 
-}
-
-#chat { flex-grow: 1; overflow-y: auto; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6; }
-
-/* FIXED: Specialist Text Styling */
-.spec-msg { color: var(--light-orange); margin-bottom: 25px; }
-.spec-msg b { color: var(--dark-orange); font-weight: 900; }
-
-.input-box { background: #1a1a1a; padding: 15px; border-radius: 12px; display: flex; flex-direction: column; gap: 15px; border: 1px solid #333; }
-input { width: 100%; background: transparent; border: 1px solid #444; color: white; padding: 14px; border-radius: 8px; box-sizing: border-box; font-family: 'Inter'; outline: none; }
-
-/* FIXED: Big Orange Transmit Button */
-#transmit-btn { 
-    background: var(--dark-orange); 
-    color: white; 
-    border: none; 
-    padding: 16px; 
-    border-radius: 8px; 
-    font-weight: 900; 
-    cursor: pointer; 
-    text-transform: uppercase; 
-    font-size: 0.9rem; 
-    letter-spacing: 1px; 
-}
-
-/* --- BUILDER: A4 PREVIEW SIDE --- */
-#preview { background: #525659; display: flex; justify-content: center; padding: 50px; overflow-y: auto; }
-.a4 { background: white; width: 210mm; min-height: 297mm; padding: 25mm; box-shadow: 0 15px 40px rgba(0,0,0,0.3); box-sizing: border-box; position: relative; }
-
-#n { font-size: 4rem; text-transform: uppercase; margin: 0; font-weight: 900; color: #111; letter-spacing: -2px; }
-#r { font-size: 1.5rem; color: #666; font-weight: 700; margin-top: 5px; }
-
-/* FIXED: Thick Orange Horizontal Line */
-.orange-hr { 
-    border: none; 
-    height: 4px; 
-    background: var(--dark-orange); 
-    margin: 35px 0; 
-}
-
-/* FIXED: Bold Orange Section Titles */
-.section-title { 
-    color: var(--dark-orange); 
-    font-weight: 900; 
-    font-size: 1.1rem; 
-    margin-top: 40px; 
-    margin-bottom: 12px; 
-    text-transform: uppercase; 
-}
-
-#s, #e { color: #444; line-height: 1.7; font-size: 1.1rem; margin-bottom: 20px; }
-
-/* FIXED: Professional Green Download Button */
-.download-btn { 
-    background: #24a861; 
-    color: white; 
-    padding: 14px 25px; 
-    border-radius: 10px; 
     font-weight: 800; 
-    border: none; 
-    cursor: pointer; 
-    margin-top: 30px; 
-    text-transform: none; 
 }
 
-@media print { #term, .download-btn { display: none; } #preview { padding: 0; background: white; } .a4 { box-shadow: none; width: 100%; margin: 0; } }
+/* Error Message: Bold Red */
+.error-msg {
+    color: #ff0000; 
+    font-weight: 900; 
+    margin-bottom: 15px;
+    text-transform: none;
+}
