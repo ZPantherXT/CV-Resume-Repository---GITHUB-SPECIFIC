@@ -1,15 +1,31 @@
-<div id="builder">
-    <div class="terminal">
-        <div id="chat"></div>
-        <div class="bottom-area">
-            <input id="in" placeholder="Enter data...">
-            <button onclick="send()">TRANSMIT INFORMATION</button>
-        </div>
+<body>
+    <div id="landing">
+        <h1>CV/Resume Builder V1.0</h1>
+        <button onclick="start('CV')">Curriculum Vitae</button>
+        <button onclick="start('Resume')">Resume</button>
     </div>
-    <div class="preview">
-        <div class="a4">
-            <h1 id="n">FULL NAME</h1>
-            <p id="r">Target Position</p>
+
+    <div id="builder" style="display: none;">
+        
+        <div class="terminal">
+            <h2 style="color: var(--dark-orange); font-size: 14px; letter-spacing: 2px;">ACTIVE SESSION</h2>
+            <div id="chat"></div> <div class="bottom-area">
+                <input id="in" placeholder="Enter data..." onkeydown="if(event.key==='Enter') send()">
+                <button onclick="send()">TRANSMIT INFORMATION</button>
+            </div>
         </div>
+
+        <div class="preview">
+            <div class="a4">
+                <h1 id="n">FULL NAME</h1>
+                <p id="r">Target Position</p>
+                <hr style="border: 2px solid var(--dark-orange); margin: 20px 0;">
+                <h3 style="color: var(--dark-orange);">PROFESSIONAL SUMMARY</h3>
+                <p id="s">Awaiting interview data...</p>
+            </div>
+        </div>
+
     </div>
-</div>
+
+    <script src="script.js"></script>
+</body>
