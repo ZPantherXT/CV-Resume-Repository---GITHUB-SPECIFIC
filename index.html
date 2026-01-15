@@ -1,54 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV/Resume Builder V1.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="landing">
-        <h1 class="main-heading">CV/Resume Builder V1.0</h1>
-        <p class="subtitle">Build Industry-Standard <strong>CVs & Resumes</strong>. Completely Free.</p>
-        <div class="choice-row">
-            <div class="card" onclick="start('Curriculum Vitae')">
-                <h2>Curriculum Vitae</h2>
-                <p class="desc">Complete academic history, biographical data, and extracurricular achievements.</p>
-                <span class="red-note">CHOOSE THIS IF YOU ARE APPLYING FOR ACADEMIC POSITIONS OR DETAILED RESEARCH ROLES.</span>
-            </div>
-            <div class="card" onclick="start('Resume')">
-                <h2>Resume</h2>
-                <p class="desc">Role-specific technical skills, work history, and certification validity.</p>
-                <span class="red-note">CHOOSE THIS FOR PROFESSIONAL OPPORTUNITIES, CORPORATE JOBS, AND SKILL-BASED ROLES.</span>
-            </div>
+<div id="builder">
+    <div class="terminal">
+        <div id="chat"></div>
+        <div class="bottom-area">
+            <input id="in" placeholder="Enter data...">
+            <button onclick="send()">TRANSMIT INFORMATION</button>
         </div>
     </div>
-
-    <div id="builder">
-        <div id="term">
-            <div class="session-label">ACTIVE SESSION</div>
-            <div id="chat"></div>
-            <div class="input-box">
-                <input type="text" id="in" placeholder="Enter data..." onkeypress="if(event.key==='Enter')send()">
-                <button id="transmit-btn" onclick="send()">TRANSMIT INFORMATION</button>
-            </div>
-        </div>
-
-        <div id="preview">
-            <div class="a4">
-                <h1 id="n">FULL NAME</h1>
-                <p id="r">Target Position</p>
-                <hr class="orange-hr"> <div class="section-title">PROFESSIONAL SUMMARY</div>
-                <div id="s">Awaiting interview data...</div>
-                
-                <div class="section-title">COMPETENCY & QUALIFICATIONS</div>
-                <div id="e">Pending technical screening...</div>
-                
-                <button class="download-btn" onclick="window.print()">Download PDF</button>
-            </div>
+    <div class="preview">
+        <div class="a4">
+            <h1 id="n">FULL NAME</h1>
+            <p id="r">Target Position</p>
         </div>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+</div>
