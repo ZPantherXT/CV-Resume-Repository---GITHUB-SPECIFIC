@@ -1,10 +1,11 @@
-const KEY = "AIzaSyDmmJ-zRqsCvY_mfESR8G5hcim7b5I9xrM"; 
+const KEY = "AIzaSyChjCLR-3_8_09_pl71TVByRJFtVJwhYdU"; 
 let mode = "";
 
 function start(m) {
     mode = m;
     document.getElementById('landing').style.display = 'none';
     document.getElementById('builder').style.display = 'flex'; 
+    // Thinner specialist weight
     document.getElementById('chat').innerHTML = `<div class="spec-msg"><b>Specialist:</b> Session initiated. State your Name and Job Role.</div>`;
 }
 
@@ -31,6 +32,7 @@ async function send() {
         chat.innerHTML += `<div class="spec-msg"><b>Specialist:</b> ${clean.reply}</div>`;
         if (clean.name) document.getElementById('n').innerText = clean.name;
     } catch {
+        // Bold Red Error Message
         chat.innerHTML += `<div class="error-msg">CRITICAL: Connection to Specialist server lost.</div>`;
     }
     chat.scrollTop = chat.scrollHeight;
