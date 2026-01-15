@@ -4,8 +4,7 @@ let mode = "";
 function start(m) {
     mode = m;
     document.getElementById('landing').style.display = 'none';
-    document.getElementById('builder').style.display = 'flex'; // Use flex to fix the crash
-    // Thinner greeting
+    document.getElementById('builder').style.display = 'flex'; 
     document.getElementById('chat').innerHTML = `<div class="spec-msg"><b>Specialist:</b> Session initiated. State your Name and Job Role.</div>`;
 }
 
@@ -22,7 +21,7 @@ async function send() {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents: [{ parts: [{ text: `Persona: Specialist. Task: Building a ${mode}. User: "${userVal}". Return ONLY JSON: {"reply":"msg","name":"n"}` }] }] })
+            body: JSON.stringify({ contents: [{ parts: [{ text: `Return ONLY JSON: {"reply":"msg","name":"n"}. Input: "${userVal}"` }] }] })
         });
 
         if (!response.ok) throw new Error();
@@ -32,7 +31,6 @@ async function send() {
         chat.innerHTML += `<div class="spec-msg"><b>Specialist:</b> ${clean.reply}</div>`;
         if (clean.name) document.getElementById('n').innerText = clean.name;
     } catch {
-        // Red Bold Error
         chat.innerHTML += `<div class="error-msg">CRITICAL: Connection to Specialist server lost.</div>`;
     }
     chat.scrollTop = chat.scrollHeight;
