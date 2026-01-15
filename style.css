@@ -4,26 +4,30 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; font-family: 'Inter', sans-serif; background: #333; height: 100vh; display: flex; overflow: hidden; }
+body { margin: 0; font-family: 'Inter', sans-serif; background: #333; height: 100vh; overflow: hidden; }
 
-/* The layout fix */
-#builder { display: flex; width: 100%; height: 100%; }
+/* Fixed Layout Structure */
+#builder { 
+    display: flex; 
+    width: 100%; 
+    height: 100%; 
+}
 
 .terminal { 
-    width: 350px; 
+    width: 380px; 
     background: #111; 
     padding: 30px; 
     display: flex; 
     flex-direction: column; 
-    border-right: 1px solid #333; 
+    border-right: 2px solid #222; 
 }
 
-/* Thinner Specialist font */
+/* Thinner Specialist Text */
 .spec-msg { 
     color: var(--light-orange); 
     font-weight: 400; 
     margin-bottom: 20px; 
-    line-height: 1.4; 
+    line-height: 1.5; 
 }
 
 .spec-msg b { color: var(--dark-orange); font-weight: 700; }
@@ -35,10 +39,24 @@ body { margin: 0; font-family: 'Inter', sans-serif; background: #333; height: 10
     margin-top: 10px; 
 }
 
-.preview { flex-grow: 1; background: #444; display: flex; justify-content: center; align-items: flex-start; padding: 40px; overflow-y: auto; }
-.a4 { background: #fff; width: 210mm; min-height: 297mm; padding: 20mm; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.preview { 
+    flex: 1; 
+    background: #444; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 50px; 
+    overflow-y: auto; 
+}
 
-/* Input area locked to bottom */
+.a4 { 
+    background: #fff; 
+    width: 210mm; 
+    min-height: 297mm; 
+    padding: 20mm; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5); 
+}
+
 .bottom-area { margin-top: auto; }
-input { width: 100%; padding: 12px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; margin-bottom: 10px; }
-button { width: 100%; padding: 12px; background: var(--dark-orange); color: #fff; border: none; font-weight: 800; cursor: pointer; border-radius: 4px; }
+input { width: 100%; padding: 14px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; }
+button { width: 100%; padding: 14px; background: var(--dark-orange); color: #fff; border: none; font-weight: 800; cursor: pointer; border-radius: 6px; }
