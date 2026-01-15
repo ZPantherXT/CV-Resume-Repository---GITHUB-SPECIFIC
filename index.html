@@ -20,13 +20,13 @@
         .subtitle { color: #555; font-size: 1.25rem; margin: 10px 0 60px 0; }
 
         .choice-row { display: flex; gap: 40px; }
-        .card { border: 3px solid #eee; padding: 40px 30px; width: 360px; border-radius: 24px; cursor: pointer; transition: 0.3s; }
+        .card { border: 3px solid #eee; padding: 40px 30px; width: 420px; border-radius: 24px; cursor: pointer; transition: 0.3s; }
         .card:hover { border-color: var(--light-orange); transform: translateY(-8px); }
 
-        /* CV/Resume Titles in Light Orange */
-        .card h2 { color: var(--light-orange); font-size: 2.2rem; margin: 0 0 15px 0; font-weight: 800; }
+        /* Light Orange Titles */
+        .card h2 { color: var(--light-orange); font-size: 2.5rem; margin: 0 0 15px 0; font-weight: 800; }
         
-        /* Specific Descriptions */
+        /* New Descriptions */
         .desc { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
         .note { color: #ff0000; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
 
@@ -55,12 +55,13 @@
             <div class="card" onclick="start('Curriculum Vitae')">
                 <h2>Curriculum Vitae</h2>
                 <p class="desc">Complete academic history, biographical data, and extracurricular achievements.</p>
-                <span class="note">FOR ACADEMIC POSITIONS</span>
+                <span class="note">Choose this if you are applying for academic positions or detailed research roles.</span>
             </div>
+            
             <div class="card" onclick="start('Resume')">
                 <h2>Resume</h2>
                 <p class="desc">Role-specific technical skills, work history, and certification validity.</p>
-                <span class="note">FOR CORPORATE ROLES</span>
+                <span class="note">Choose this for professional opportunities, corporate jobs, and skill-based roles.</span>
             </div>
         </div>
     </div>
