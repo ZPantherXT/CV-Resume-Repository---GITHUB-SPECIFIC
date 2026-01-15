@@ -1,41 +1,39 @@
 const KEY = "AIzaSyDmmJ-zRqsCvY_mfESR8G5hcim7b5I9xrM"; 
-let m = "";
+let mode = "";
 
-async function start(mode) {
-    m = mode;
+function start(m) {
+    mode = m;
     document.getElementById('landing').style.display = 'none';
-    document.getElementById('builder').style.display = 'grid';
-    // Initialize Specialist with thinner weight
-    document.getElementById('chat').innerHTML = `<div class="spec-msg"><b>Specialist:</b> Session initiated. State your Full Name and Job Role.</div>`;
+    document.getElementById('builder').style.display = 'flex'; // Use flex to fix the crash
+    // Thinner greeting
+    document.getElementById('chat').innerHTML = `<div class="spec-msg"><b>Specialist:</b> Session initiated. State your Name and Job Role.</div>`;
 }
 
-function send() {
-    const i = document.getElementById('in');
-    if (i.value.trim()) {
-        document.getElementById('chat').innerHTML += `<div style="margin-bottom:15px; color:#ccc;"><b>User:</b> ${i.value}</div>`;
-        callAI(i.value);
-        i.value = '';
-    }
-}
+async function send() {
+    const input = document.getElementById('in');
+    const chat = document.getElementById('chat');
+    if (!input.value.trim()) return;
 
-async function callAI(userInput) {
+    chat.innerHTML += `<div style="color:#888; margin-bottom:15px;"><b>User:</b> ${input.value}</div>`;
+    const userVal = input.value;
+    input.value = "";
+
     try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
-            method: "POST", headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ contents: [{ parts: [{ text: `Persona: Specialist. Task: Building a ${m}. User: "${userInput}". Return ONLY JSON: {"reply":"msg","name":"n","role":"r"}` }] }] })
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: [{ parts: [{ text: `Persona: Specialist. Task: Building a ${mode}. User: "${userVal}". Return ONLY JSON: {"reply":"msg","name":"n"}` }] }] })
         });
-        
+
         if (!response.ok) throw new Error();
-        
         const data = await response.json();
         const clean = JSON.parse(data.candidates[0].content.parts[0].text.replace(/```json|```/g, "").trim());
-        
-        document.getElementById('chat').innerHTML += `<div class="spec-msg"><b>Specialist:</b> ${clean.reply}</div>`;
+
+        chat.innerHTML += `<div class="spec-msg"><b>Specialist:</b> ${clean.reply}</div>`;
         if (clean.name) document.getElementById('n').innerText = clean.name;
-        
-    } catch (error) {
-        // Critical Red Error
-        document.getElementById('chat').innerHTML += `<div class="error-msg">CRITICAL: Connection to Specialist server lost.</div>`;
+    } catch {
+        // Red Bold Error
+        chat.innerHTML += `<div class="error-msg">CRITICAL: Connection to Specialist server lost.</div>`;
     }
-    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
 }
