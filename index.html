@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --light-orange: #FF8C00; /* Lighter shade */
+            --light-orange: #FF8C00; /* */
             --dark-orange: #FF4D00;
             --terminal-bg: #121212;
         }
@@ -20,17 +20,26 @@
         .subtitle { color: #555; font-size: 1.25rem; margin: 10px 0 60px 0; }
 
         .choice-row { display: flex; gap: 40px; }
-        .card { border: 3px solid #eee; padding: 40px 30px; width: 420px; border-radius: 24px; cursor: pointer; transition: 0.3s; }
-        .card:hover { border-color: var(--light-orange); transform: translateY(-8px); }
+        .card { border: 3px solid #eee; padding: 45px 35px; width: 440px; border-radius: 24px; cursor: pointer; transition: 0.3s; background: #fff; }
+        .card:hover { border-color: var(--light-orange); transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
         /* Light Orange Titles */
-        .card h2 { color: var(--light-orange); font-size: 2.5rem; margin: 0 0 15px 0; font-weight: 800; }
+        .card h2 { color: var(--light-orange); font-size: 2.6rem; margin: 0 0 15px 0; font-weight: 800; }
         
-        /* New Descriptions */
-        .desc { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
-        .note { color: #ff0000; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+        /* Grey Description Text */
+        .desc { color: #666; font-size: 1rem; line-height: 1.5; margin-bottom: 25px; height: 3em; }
 
-        /* --- BUILDER --- */
+        /* DETAILED RED DESCRIPTIONS */
+        .red-note { 
+            color: #ff0000; 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            line-height: 1.3;
+            display: block;
+            text-transform: none; /* Keeps it as readable sentences */
+        }
+
+        /* --- BUILDER INTERFACE --- */
         #builder { display: none; grid-template-columns: 450px 1fr; height: 100vh; }
         #term { background: var(--terminal-bg); padding: 30px; display: flex; flex-direction: column; border-right: 1px solid #333; }
         #chat { flex-grow: 1; overflow-y: auto; color: white; margin-bottom: 20px; font-size: 0.95rem; }
@@ -55,13 +64,13 @@
             <div class="card" onclick="start('Curriculum Vitae')">
                 <h2>Curriculum Vitae</h2>
                 <p class="desc">Complete academic history, biographical data, and extracurricular achievements.</p>
-                <span class="note">Choose this if you are applying for academic positions or detailed research roles.</span>
+                <span class="red-note">Choose this if you are applying for academic positions or detailed research roles.</span>
             </div>
             
             <div class="card" onclick="start('Resume')">
                 <h2>Resume</h2>
                 <p class="desc">Role-specific technical skills, work history, and certification validity.</p>
-                <span class="note">Choose this for professional opportunities, corporate jobs, and skill-based roles.</span>
+                <span class="red-note">Choose this for professional opportunities, corporate jobs, and skill-based roles.</span>
             </div>
         </div>
     </div>
