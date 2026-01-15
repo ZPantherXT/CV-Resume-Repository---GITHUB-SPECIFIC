@@ -7,207 +7,99 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Lighter brand orange as requested */
-            --brand-light-orange: #FF8C00; 
-            --brand-dark-orange: #FF4D00;
+            --light-orange: #FF8C00; /* Lighter shade */
+            --dark-orange: #FF4D00;
             --terminal-bg: #121212;
-            --error-red: #ff0000;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background-color: #ffffff;
-            overflow-x: hidden;
-        }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; overflow-x: hidden; }
 
         /* --- LANDING --- */
-        #landing-page {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .main-heading {
-            color: var(--brand-dark-orange);
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin: 0;
-            letter-spacing: -3px;
-            text-transform: uppercase;
-        }
-
-        .subtitle {
-            color: #555;
-            font-size: 1.25rem;
-            margin-top: 10px;
-            margin-bottom: 60px;
-        }
+        #landing { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .main-heading { color: var(--dark-orange); font-size: 4.5rem; font-weight: 900; margin: 0; letter-spacing: -3px; text-transform: uppercase; }
+        .subtitle { color: #555; font-size: 1.25rem; margin: 10px 0 60px 0; }
 
         .choice-row { display: flex; gap: 40px; }
+        .card { border: 3px solid #eee; padding: 40px 30px; width: 360px; border-radius: 24px; cursor: pointer; transition: 0.3s; }
+        .card:hover { border-color: var(--light-orange); transform: translateY(-8px); }
 
-        .choice-card {
-            background: white;
-            border: 3px solid #eee;
-            padding: 40px 30px;
-            width: 360px;
-            border-radius: 24px;
-            cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
-        }
-
-        .choice-card:hover {
-            border-color: var(--brand-light-orange);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.1);
-        }
-
-        /* Titles changed to Light Orange as requested */
-        .choice-card h2 { 
-            color: var(--brand-light-orange); 
-            font-size: 2.2rem; 
-            margin: 0 0 15px 0; 
-            font-weight: 800;
-        }
-
-        /* Descriptions as discussed */
-        .description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .usage-note { 
-            color: var(--error-red); 
-            font-weight: 700; 
-            font-size: 0.85rem; 
-            text-transform: uppercase;
-        }
+        /* CV/Resume Titles in Light Orange */
+        .card h2 { color: var(--light-orange); font-size: 2.2rem; margin: 0 0 15px 0; font-weight: 800; }
+        
+        /* Specific Descriptions */
+        .desc { color: #666; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; }
+        .note { color: #ff0000; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
 
         /* --- BUILDER --- */
-        #builder-interface {
-            display: none;
-            grid-template-columns: 450px 1fr;
-            height: 100vh;
-        }
-
-        #terminal { background: var(--terminal-bg); display: flex; flex-direction: column; padding: 30px; border-right: 1px solid #333; }
-        #chat-history { flex-grow: 1; overflow-y: auto; color: white; margin-bottom: 20px; font-size: 0.95rem; }
-        .msg-ai { color: var(--brand-light-orange); margin-bottom: 15px; }
-
-        .input-area { background: #1e1e1e; padding: 15px; border-radius: 12px; }
+        #builder { display: none; grid-template-columns: 450px 1fr; height: 100vh; }
+        #term { background: var(--terminal-bg); padding: 30px; display: flex; flex-direction: column; border-right: 1px solid #333; }
+        #chat { flex-grow: 1; overflow-y: auto; color: white; margin-bottom: 20px; font-size: 0.95rem; }
+        .spec { color: var(--light-orange); margin-bottom: 12px; }
+        .input-box { background: #1e1e1e; padding: 15px; border-radius: 12px; }
         input { width: 100%; background: transparent; border: 1px solid #444; color: white; padding: 12px; border-radius: 6px; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        #preview-pane { background: #525659; display: flex; justify-content: center; padding: 50px; overflow-y: auto; }
-        .a4-sheet { background: white; width: 210mm; min-height: 297mm; padding: 25mm; box-shadow: 0 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; position: relative; }
-        
-        .gen-btn { 
-            background: #24a861; /* Green color from image */
-            color: white; 
-            padding: 15px 30px; 
-            border-radius: 25px; 
-            font-weight: 700; 
-            border: none; 
-            cursor: pointer; 
-            position: absolute; 
-            bottom: 40px; 
-            right: 40px; 
-            text-transform: uppercase;
-        }
+        #preview { background: #525659; display: flex; justify-content: center; padding: 50px; overflow-y: auto; }
+        .a4 { background: white; width: 210mm; min-height: 297mm; padding: 25mm; box-shadow: 0 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; position: relative; }
+        .gen-btn { background: #24a861; color: white; padding: 15px 30px; border-radius: 25px; font-weight: 700; border: none; cursor: pointer; position: absolute; bottom: 40px; right: 40px; }
 
-        @media print { #terminal, .gen-btn { display: none; } #preview-pane { padding: 0; background: white; } .a4-sheet { box-shadow: none; width: 100%; margin: 0; } }
+        @media print { #term, .gen-btn { display: none; } #preview { padding: 0; background: white; } .a4 { box-shadow: none; width: 100%; margin: 0; } }
     </style>
 </head>
 <body>
 
-    <div id="landing-page">
+    <div id="landing">
         <h1 class="main-heading">CV/Resume Builder V1.0</h1>
         <p class="subtitle">Build Industry-Standard <strong>CVs & Resumes</strong>. Completely Free.</p>
         
         <div class="choice-row">
-            <div class="choice-card" onclick="startApp('Curriculum Vitae')">
+            <div class="card" onclick="start('Curriculum Vitae')">
                 <h2>Curriculum Vitae</h2>
-                <p class="description">Complete academic history, biographical data, and extracurricular achievements.</p>
-                <span class="usage-note">FOR ACADEMIC POSITIONS</span>
+                <p class="desc">Complete academic history, biographical data, and extracurricular achievements.</p>
+                <span class="note">FOR ACADEMIC POSITIONS</span>
             </div>
-
-            <div class="choice-card" onclick="startApp('Resume')">
+            <div class="card" onclick="start('Resume')">
                 <h2>Resume</h2>
-                <p class="description">Role-specific technical skills, work history, and certification validity.</p>
-                <span class="usage-note">FOR CORPORATE ROLES</span>
+                <p class="desc">Role-specific technical skills, work history, and certification validity.</p>
+                <span class="note">FOR CORPORATE ROLES</span>
             </div>
         </div>
     </div>
 
-    <div id="builder-interface">
-        <div id="terminal">
-            <div id="chat-history"></div>
-            <div class="input-area">
-                <input type="text" id="user-input" placeholder="Enter details..." onkeypress="if(event.key==='Enter')sendMessage()">
-            </div>
-        </div>
-
-        <div id="preview-pane">
-            <div class="a4-sheet">
-                <h1 id="out-name" style="margin:0; font-size: 2.8rem; text-transform: uppercase;">FULL NAME</h1>
-                <p id="out-role" style="font-size: 1.2rem; color: #666; font-weight: 700;">Target Position</p>
+    <div id="builder">
+        <div id="term"><div id="chat"></div><div class="input-box"><input type="text" id="in" placeholder="Type data..." onkeypress="if(event.key==='Enter')send()"></div></div>
+        <div id="preview">
+            <div class="a4">
+                <h1 id="n" style="margin:0; font-size: 2.8rem; text-transform: uppercase;">FULL NAME</h1>
+                <p id="r" style="font-size: 1.2rem; color: #666; font-weight: 700;">Target Position</p>
                 <hr style="border: 1px solid #eee; margin: 20px 0;">
-                <div id="out-summary" style="margin-bottom: 30px; line-height: 1.6;">Professional summary will appear here...</div>
-                <div id="out-exp" style="line-height: 1.6;">Experience details will appear here...</div>
-                <button class="gen-btn" onclick="window.print()">Generate Document (PDF)</button>
+                <div id="s" style="margin-bottom: 30px; line-height: 1.6;">Professional summary...</div>
+                <div id="e" style="line-height: 1.6;">Experience details...</div>
+                <button class="gen-btn" onclick="window.print()">GENERATE DOCUMENT (PDF)</button>
             </div>
         </div>
     </div>
 
     <script>
-        const API_KEY = "AIzaSyChjCLR-3_8_09_pl71TVByRJFtVJwhYdU"; 
-        let currentMode = "";
-
-        async function startApp(mode) {
-            currentMode = mode;
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('builder-interface').style.display = 'grid';
-            await callGemini(`Start an interview for a ${mode}. Ask for my name.`);
-        }
-
-        async function callGemini(text) {
-            const history = document.getElementById('chat-history');
+        const KEY = "AIzaSyChjCLR-3_8_09_pl71TVByRJFtVJwhYdU"; 
+        let m = "";
+        async function start(mode){ m=mode; document.getElementById('landing').style.display='none'; document.getElementById('builder').style.display='grid'; await call("Hi"); }
+        async function call(t){
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: `You are a Career Expert. Mode: ${currentMode}. User: ${text}. Response must be ONLY JSON: {"reply":"chat message","name":"","role":"","summary":"","experience":""}` }] }]
-                    })
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${KEY}`, {
+                    method: "POST", headers:{"Content-Type":"application/json"},
+                    body: JSON.stringify({contents:[{parts:[{text:`Persona: Expert. Mode: ${m}. User: ${t}. Return ONLY JSON: {"reply":"msg","name":"","role":"","summary":"","experience":""}`}]}]})
                 });
-
-                const data = await response.json();
-                const rawText = data.candidates[0].content.parts[0].text;
-                const json = JSON.parse(rawText.match(/\{[\s\S]*\}/)[0]);
-
-                if(json.reply) history.innerHTML += `<div class="msg-ai"><b>AI:</b> ${json.reply}</div>`;
-                if(json.name) document.getElementById('out-name').innerText = json.name;
-                if(json.role) document.getElementById('out-role').innerText = json.role;
-                if(json.summary) document.getElementById('out-summary').innerText = json.summary;
-                if(json.experience) document.getElementById('out-exp').innerHTML = json.experience;
-                
-                history.scrollTop = history.scrollHeight;
-            } catch (e) { console.error("API error", e); }
+                const d = await res.json();
+                const j = JSON.parse(d.candidates[0].content.parts[0].text.match(/\{[\s\S]*\}/)[0]);
+                if(j.reply) document.getElementById('chat').innerHTML += `<div class="spec"><b>AI:</b> ${j.reply}</div>`;
+                if(j.name) document.getElementById('n').innerText = j.name;
+                if(j.role) document.getElementById('r').innerText = j.role;
+                if(j.summary) document.getElementById('s').innerText = j.summary;
+                if(j.experience) document.getElementById('e').innerHTML = j.experience;
+                document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+            } catch (e) {}
         }
-
-        function sendMessage() {
-            const input = document.getElementById('user-input');
-            if(input.value) {
-                document.getElementById('chat-history').innerHTML += `<div><b>You:</b> ${input.value}</div>`;
-                callGemini(input.value);
-                input.value = '';
-            }
-        }
+        function send(){ const i=document.getElementById('in'); if(i.value){ document.getElementById('chat').innerHTML += `<div><b>You:</b> ${i.value}</div>`; call(i.value); i.value=''; } }
     </script>
 </body>
 </html>
