@@ -25,8 +25,8 @@ body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; overflow-x
 /* RED TEXT - FIXED: Normal weight and no all-caps */
 .red-note { 
     color: #ff0000; 
-    font-weight: 100; /* Set to normal font weight */
-    font-size: 2rem; 
+    font-weight: 495; /* Set to normal font weight */
+    font-size: 0.95rem; 
     text-transform: none; /* Removed all-caps */
     display: block; 
     line-height: 1.4; 
